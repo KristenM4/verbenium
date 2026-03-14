@@ -1,0 +1,6 @@
+@Verbenium_HostAddress = http://localhost:5080
+
+GET {{Verbenium_HostAddress}}/
+Accept: application/json
+
+###
