@@ -6,6 +6,6 @@ var app = builder.Build();
 
 app.UseHttpsRedirection();
 
-app.MapGet("/", () => "Coming soon.");
+app.MapControllers();
 
 app.Run();
