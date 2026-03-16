@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Verbenium.Game;
 
 namespace Verbenium.Controllers;
 
@@ -9,51 +10,51 @@ public class StartingPointController : ControllerBase
     [HttpGet]
     public IActionResult Get()
     {
-        return Ok(new
+        return Ok(new GameNode
         {
-            description = "Welcome to Verbenium. Go to /start to begin.",
-            actions = Array.Empty<string>()
+            Description = "Welcome to Verbenium. Go to /start to begin.",
+            Actions = []
         });
     }
 
     [HttpGet("start")]
     public IActionResult GetUp()
     {
-        return Ok(new
+        return Ok(new GameNode
         {
-            description = "Okay, let's start: You wake up in a dark forest. What do you do?",
-            actions = new[] { "check surroundings" }
+            Description = "Okay, let's start: You wake up in a dark forest. What do you do?",
+            Actions = ["check surroundings"]
         });
     }
 
     [HttpGet("check_surroundings")]
     public IActionResult CheckSurroundings()
     {
-        return Ok(new
+        return Ok(new GameNode
         {
-            description = "You look around, and see a patch of mushrooms growing underneath a large tree. " +
+            Description = "You look around, and see a patch of mushrooms growing underneath a large tree. " +
             "You feel your stomach growl. The mushrooms look totally harmless.",
-            actions = new[] { "eat the mushrooms", "don't eat the mushrooms" }
+            Actions = ["eat the mushrooms", "don't eat the mushrooms"]
         });
     }
 
     [HttpGet("eat_mushrooms")]
     public IActionResult EatMushrooms()
     {
-        return Ok(new
+        return Ok(new GameNode
         {
-            description = "You were wrong about the mushrooms. GAME OVER.",
-            actions = Array.Empty<string>()
+            Description = "You were wrong about the mushrooms. GAME OVER.",
+            Actions = []
         });
     }
 
     [HttpGet("dont_eat_mushrooms")]
     public IActionResult DontEatMushrooms()
     {
-        return Ok(new
+        return Ok(new GameNode
         {
-            description = "Taking your eyes away from the mushrooms, you see a clearing in the distance.",
-            actions = Array.Empty<string>()
+            Description = "Taking your eyes away from the mushrooms, you see a clearing in the distance.",
+            Actions = []
         });
     }
 }
