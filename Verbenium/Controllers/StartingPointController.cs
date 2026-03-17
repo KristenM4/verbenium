@@ -12,7 +12,7 @@ public class StartingPointController : ControllerBase
     {
         return Ok(new GameNode
         {
-            Description = "Welcome to Verbenium. Go to /start to begin.",
+            Description = "Welcome to Verbenium. More info coming soon.",
             Actions = []
         });
     }
