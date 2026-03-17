@@ -3,7 +3,7 @@ using Verbenium.Game;
 
 namespace Verbenium.Controllers;
 
-[Route("")]
+[Route("/api")]
 [ApiController]
 public class StartingPointController : ControllerBase
 {

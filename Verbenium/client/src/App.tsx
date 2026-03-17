@@ -9,7 +9,7 @@ function App() {
     const [gameNode, setGameNode] = useState<GameNode | null>(null);
 
     useEffect(() => {
-        fetch('https://localhost:7185/')
+        fetch(`${import.meta.env.VITE_API_URL}/`)
             .then((response) => response.json())
             .then((data) => setGameNode(data))
             .catch((error) => console.error('Error fetching data:', error));
