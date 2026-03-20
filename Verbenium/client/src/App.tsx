@@ -19,7 +19,7 @@ function App() {
 
     return (
         <div>
-            <h1>Verbenium</h1>
+            <img src="src/images/verbenium_title.png" alt="Verbenium" style={{ width:"350px" }} />
             <p>{gameNode.description}</p>
 
             {gameNode.actions && gameNode.actions.length > 0 && (
