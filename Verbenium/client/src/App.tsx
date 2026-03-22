@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+﻿import { useState, useEffect } from 'react'
 
 interface GameNode {
     description: string;
@@ -18,8 +18,8 @@ function App() {
     if (!gameNode) return <div>Loading...</div>;
 
     return (
-        <div>
-            <img src="/verbenium_title.png" alt="Verbenium" style={{ width:"350px" }} />
+        <div className="flex flex-col items-center text-center">
+            <img className="mx-auto w-full max-w-96" src="/verbenium_title.png" alt="Verbenium" />
             <p>{gameNode.description}</p>
 
             {gameNode.actions && gameNode.actions.length > 0 && (
