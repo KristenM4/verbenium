@@ -8,11 +8,15 @@ interface GameNode {
 function App() {
     const [gameNode, setGameNode] = useState<GameNode | null>(null);
 
-    useEffect(() => {
-        fetch(`${import.meta.env.VITE_API_URL}/`)
+    const fetchNode = (path: string) => {
+        fetch(`${import.meta.env.VITE_API_URL}/${path}`)
             .then((response) => response.json())
             .then((data) => setGameNode(data))
             .catch((error) => console.error('Error fetching data:', error));
+    };
+
+    useEffect(() => {
+        fetchNode("");
     }, []);
 
     if (!gameNode) return <div>Loading...</div>;
@@ -23,10 +27,14 @@ function App() {
             <p>{gameNode.description}</p>
 
             {gameNode.actions && gameNode.actions.length > 0 && (
-                <ul>
+                <ul className="my-5">
                     {gameNode.actions.map((action, index) => (
                         <li key={index}>
-                            <button>{action}</button>
+                            <button
+                                onClick={() => fetchNode(action)}
+                                className="cursor-pointer rounded-sm bg-stone-400 px-3 py-1 hover:bg-stone-300">
+                                {action}
+                            </button>
                         </li>
                     ))}
                 </ul>
