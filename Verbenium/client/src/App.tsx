@@ -1,9 +1,5 @@
 ﻿import { useState, useEffect } from 'react'
-
-interface GameNode {
-    description: string;
-    actions: string[];
-}
+import type { GameNode } from './types/game';
 
 function App() {
     const [gameNode, setGameNode] = useState<GameNode | null>(null);
@@ -29,11 +25,11 @@ function App() {
             {gameNode.actions && gameNode.actions.length > 0 && (
                 <ul className="my-5">
                     {gameNode.actions.map((action, index) => (
-                        <li key={index}>
+                        <li className="py-2" key={index}>
                             <button
-                                onClick={() => fetchNode(action)}
+                                onClick={() => fetchNode(action.url)}
                                 className="cursor-pointer rounded-sm bg-stone-400 px-3 py-1 hover:bg-stone-300">
-                                {action}
+                                {action.label}
                             </button>
                         </li>
                     ))}
