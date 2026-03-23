@@ -26,10 +26,11 @@ public class StartingPointController : ControllerBase
         return Ok(new GameNode
         {
             Description = "Okay, let's start: You wake up in a dark forest. What do you do?",
-            Actions = 
+            Actions =
             [
                 new() { Label = "Check surroundings", Url = "check_surroundings" }
-            ]
+            ],
+            ImageUrl = "forest-2.png"
         });
     }
 
@@ -42,9 +43,9 @@ public class StartingPointController : ControllerBase
             "You feel your stomach growl. The mushrooms look totally harmless.",
             Actions = 
             [
-                new() { Label = "Eat the mushrooms", Url = "eat_mushrooms" },
-                new() { Label = "Don't eat the mushrooms", Url = "dont_eat_mushrooms" }
-            ]
+                new() { Label = "Eat the mushrooms", Url = "eat_mushrooms" }
+            ],
+            ImageUrl = "forest-3.png"
         });
     }
 
@@ -54,7 +55,10 @@ public class StartingPointController : ControllerBase
         return Ok(new GameNode
         {
             Description = "You were wrong about the mushrooms. GAME OVER.",
-            Actions = []
+            Actions = [
+                new() { Label = "Restart", Url = "start" }
+            ],
+            ImageUrl = "forest-1.png"
         });
     }
 
@@ -64,7 +68,8 @@ public class StartingPointController : ControllerBase
         return Ok(new GameNode
         {
             Description = "Taking your eyes away from the mushrooms, you see a clearing in the distance.",
-            Actions = []
+            Actions = [],
+            ImageUrl = "forest-1.png"
         });
     }
 }

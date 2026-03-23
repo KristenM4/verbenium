@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <TypeScriptCompile Include="client\src\types\game.ts" />
+  </ItemGroup>
+
 </Project>

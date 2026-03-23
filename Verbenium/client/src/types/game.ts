@@ -5,5 +5,6 @@
 
 export interface GameNode {
     description: string;
+    imageUrl?: string;
     actions: GameAction[];
 }
