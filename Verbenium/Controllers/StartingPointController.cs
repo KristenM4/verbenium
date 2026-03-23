@@ -12,7 +12,7 @@ public class StartingPointController : ControllerBase
     {
         return Ok(new GameNode
         {
-            Description = "Welcome to Verbenium. More info coming soon.",
+            Description = "Welcome to Verbenium. Click Start for a demo.",
             Actions =
             [
                 new() { Label = "Start", Url = "start" }
