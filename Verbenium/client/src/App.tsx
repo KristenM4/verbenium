@@ -1,5 +1,4 @@
-﻿import { useState, useEffect } from 'react'
-import { useGameNode } from './hooks/useGameNode';
+﻿import { useGameNode } from './hooks/useGameNode';
 import { ImageCrossfade } from './components/ImageCrossfade';
 import { ActionList } from './components/ActionList';
 
