@@ -58,7 +58,7 @@ public class StartingPointController : ControllerBase
             Actions = [
                 new() { Label = "Restart", Url = "start" }
             ],
-            ImageUrl = "forest-1.png"
+            ImageUrl = "death-mushroom.png"
         });
     }
 
