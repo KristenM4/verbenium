@@ -13,7 +13,7 @@ export function ActionList({ actions, onAction }: Props) {
                 <li key={index}>
                     <button
                         onClick={() => onAction(action.url)}
-                        className="cursor-pointer rounded-sm bg-stone-400 px-3 py-1 hover:bg-stone-300"
+                        className="btn"
                     >
                         {action.label}
                     </button>
