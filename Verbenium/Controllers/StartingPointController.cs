@@ -12,6 +12,7 @@ public class StartingPointController : ControllerBase
     {
         return Ok(new GameNode
         {
+            Url = "/",
             Description = "Welcome to Verbenium. Click Start for a demo.",
             Actions =
             [
@@ -25,6 +26,7 @@ public class StartingPointController : ControllerBase
     {
         return Ok(new GameNode
         {
+            Url = "start",
             Description = "Okay, let's start: You wake up in a dark forest. What do you do?",
             Actions =
             [
@@ -39,6 +41,7 @@ public class StartingPointController : ControllerBase
     {
         return Ok(new GameNode
         {
+            Url = "check_surroundings",
             Description = "You look around, and see a patch of mushrooms growing underneath a large tree. " +
             "You feel your stomach growl. The mushrooms look totally harmless.",
             Actions = 
@@ -54,6 +57,7 @@ public class StartingPointController : ControllerBase
     {
         return Ok(new GameNode
         {
+            Url = "eat_mushrooms",
             Description = "You were wrong about the mushrooms. GAME OVER.",
             Actions = [
                 new() { Label = "Restart", Url = "start" }
@@ -67,6 +71,7 @@ public class StartingPointController : ControllerBase
     {
         return Ok(new GameNode
         {
+            Url = "dont_eat_mushrooms",
             Description = "Taking your eyes away from the mushrooms, you see a clearing in the distance.",
             Actions = [],
             ImageUrl = "forest-1.png"
