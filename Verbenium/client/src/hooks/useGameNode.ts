@@ -1,11 +1,5 @@
 ﻿import { useState, useEffect } from 'react';
-import type { GameNode } from '../types/game';
-
-interface ImageState {
-    current: string | null;
-    next: string | null;
-    isFading: boolean;
-}
+import type { GameNode, ImageState } from '../types/game';
 
 export function useGameNode() {
     const [gameNode, setGameNode] = useState<GameNode | null>(null);
