@@ -485,3 +485,8 @@ $RECYCLE.BIN/
 
 # Tailwind CSS IntelliSense extension settings file
 tailwind.extension.json
+
+#sqlite db files
+app.db
+*.db-shm
+*.db-wal

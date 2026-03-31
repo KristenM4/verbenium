@@ -1,4 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using Verbenium.server.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite("Data Source=app.db"));
 
 builder.Services.AddCors(options =>
 {
