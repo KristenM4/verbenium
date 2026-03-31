@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Verbenium.Game;
+using Verbenium.server.Game;
 
 namespace Verbenium.Controllers;
 
