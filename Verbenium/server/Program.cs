@@ -3,8 +3,11 @@ using Verbenium.server.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var dbPath = Environment.GetEnvironmentVariable("DB_PATH")
+             ?? "app.db";
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source=app.db"));
+    options.UseSqlite($"Data Source={dbPath}"));
 
 builder.Services.AddCors(options =>
 {
