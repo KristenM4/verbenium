@@ -12,7 +12,7 @@ public static class DbSeeder
             new GameNode
             {
                 Url = "/",
-                Description = "Welcome to Verbenium. Click start for a demo",
+                Description = "Welcome to Verbenium. Click Start for a demo.",
                 Actions = new List<GameAction>
                 {
                     new() { Label = "Start", Url = "start"}
@@ -59,7 +59,8 @@ public static class DbSeeder
                 Description = "Taking your eyes away from the mushrooms, you see a clearing in the distance.",
                 ImageUrl = "forest-1.png",
                 Actions = new List<GameAction>()
-            });
+            }
+        );
 
         db.SaveChanges();
     }
