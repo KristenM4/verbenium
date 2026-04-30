@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Verbenium.server.Game;
+using Microsoft.EntityFrameworkCore;
+using Verbenium.server.Data;
 
 namespace Verbenium.Controllers;
 
@@ -7,79 +8,25 @@ namespace Verbenium.Controllers;
 [ApiController]
 public class StartingPointController : ControllerBase
 {
+    private readonly AppDbContext _db;
+
+    public StartingPointController(AppDbContext db)
+    {
+        _db = db;
+    }
+
     [HttpGet]
-    public IActionResult Get()
-    {
-        return Ok(new GameNode
-        {
-            Url = "/",
-            Chapter = null,
-            Description = "Welcome to Verbenium. Click Start for a demo.",
-            Actions =
-            [
-                new() { Label = "Start", Url = "start" }
-            ]
-        });
-    }
+    public Task<IActionResult> GetRoot() => GetNode("/");
 
-    [HttpGet("start")]
-    public IActionResult GetUp()
-    {
-        return Ok(new GameNode
-        {
-            Url = "start",
-            Chapter = 1,
-            Description = "Okay, let's start: You wake up in a dark forest. What do you do?",
-            Actions =
-            [
-                new() { Label = "Check surroundings", Url = "check_surroundings" }
-            ],
-            ImageUrl = "forest-2.png"
-        });
-    }
+    [HttpGet("{slug}")]
+    public Task<IActionResult> GetBySlug(string slug) => GetNode(slug);
 
-    [HttpGet("check_surroundings")]
-    public IActionResult CheckSurroundings()
+    private async Task<IActionResult> GetNode(string slug)
     {
-        return Ok(new GameNode
-        {
-            Url = "check_surroundings",
-            Chapter = 1,
-            Description = "You look around, and see a patch of mushrooms growing underneath a large tree. " +
-            "You feel your stomach growl. The mushrooms look totally harmless.",
-            Actions =
-            [
-                new() { Label = "Eat the mushrooms", Url = "eat_mushrooms" }
-            ],
-            ImageUrl = "forest-3.png"
-        });
-    }
+        var node = await _db.GameNodes
+            .Include(n => n.Actions)
+            .FirstOrDefaultAsync(n => n.Url == slug);
 
-    [HttpGet("eat_mushrooms")]
-    public IActionResult EatMushrooms()
-    {
-        return Ok(new GameNode
-        {
-            Url = "eat_mushrooms",
-            Chapter = 1,
-            Description = "You were wrong about the mushrooms. GAME OVER.",
-            Actions = [
-                new() { Label = "Restart", Url = "start" }
-            ],
-            ImageUrl = "death-mushroom.png"
-        });
-    }
-
-    [HttpGet("dont_eat_mushrooms")]
-    public IActionResult DontEatMushrooms()
-    {
-        return Ok(new GameNode
-        {
-            Url = "dont_eat_mushrooms",
-            Chapter = 1,
-            Description = "Taking your eyes away from the mushrooms, you see a clearing in the distance.",
-            Actions = [],
-            ImageUrl = "forest-1.png"
-        });
+        return node is null ? NotFound() : Ok(node);
     }
 }
