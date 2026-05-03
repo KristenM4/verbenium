@@ -6,11 +6,11 @@ namespace Verbenium.Controllers;
 
 [Route("/api")]
 [ApiController]
-public class StartingPointController : ControllerBase
+public class GameController : ControllerBase
 {
     private readonly AppDbContext _db;
 
-    public StartingPointController(AppDbContext db)
+    public GameController(AppDbContext db)
     {
         _db = db;
     }
