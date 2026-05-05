@@ -16,3 +16,8 @@ export interface ImageState {
   next: string | null;
   isFading: boolean;
 }
+
+export interface FetchError {
+  message: string;
+  status?: number;
+}
