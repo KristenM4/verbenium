@@ -2,7 +2,7 @@
 import { ImageCrossfade } from "../components/ImageCrossfade";
 import { ActionList } from "../components/ActionList";
 
-export function HomePage({ gameNode, imageState, fetchNode }: PageProps) {
+export function HomePage({ gameNode, imageState }: PageProps) {
   return (
     <div className="container">
       <img
@@ -12,7 +12,7 @@ export function HomePage({ gameNode, imageState, fetchNode }: PageProps) {
       />
       <div className="flex flex-col items-center gap-4 py-5">
         <p>{gameNode.description}</p>
-        <ActionList actions={gameNode.actions ?? []} onAction={fetchNode} />
+        <ActionList actions={gameNode.actions ?? []} />
       </div>
       <ImageCrossfade {...imageState} />
     </div>

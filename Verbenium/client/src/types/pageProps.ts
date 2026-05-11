@@ -3,5 +3,4 @@
 export interface PageProps {
   gameNode: GameNode;
   imageState: ImageState;
-  fetchNode: (url: string) => void;
 }

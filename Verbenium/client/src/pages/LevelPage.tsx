@@ -2,7 +2,7 @@
 import { ImageCrossfade } from "../components/ImageCrossfade";
 import { ActionList } from "../components/ActionList";
 
-export function LevelPage({ gameNode, imageState, fetchNode }: PageProps) {
+export function LevelPage({ gameNode, imageState }: PageProps) {
   return (
     <div className="container mb-12 gap-2">
       <img
@@ -16,7 +16,7 @@ export function LevelPage({ gameNode, imageState, fetchNode }: PageProps) {
             Chapter {gameNode.chapter}
           </p>
           <p className="xl:mb-auto min-h-24 max-h-36">{gameNode.description}</p>
-          <ActionList actions={gameNode.actions ?? []} onAction={fetchNode} />
+          <ActionList actions={gameNode.actions ?? []} />
         </div>
         <div className="xl:col-span-4">
           <ImageCrossfade {...imageState} />
