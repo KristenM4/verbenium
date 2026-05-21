@@ -44,7 +44,6 @@ export function useGameNode(slug: string) {
         }
 
         const img = new Image();
-        img.src = newImage;
         img.onload = () => {
           if (cancelled) return;
           setImageState((prev) => ({
@@ -64,6 +63,7 @@ export function useGameNode(slug: string) {
           setImageState((prev) => ({ ...prev, current: null }));
           setGameNode(data);
         };
+        img.src = newImage;
       } catch (err) {
         if (cancelled) return;
         setError({
