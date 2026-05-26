@@ -6,7 +6,9 @@ public static class DbSeeder
 {
     public static void SeedGameNodes(this AppDbContext db)
     {
-        if (db.GameNodes.Any()) return;
+        db.GameActions.RemoveRange(db.GameActions);
+        db.GameNodes.RemoveRange(db.GameNodes);
+        db.SaveChanges();
 
         db.GameNodes.AddRange(
             new GameNode
@@ -23,7 +25,7 @@ public static class DbSeeder
                 Url = "start",
                 Chapter = 1,
                 Description = "Okay, let's start: You wake up in a dark forest. What do you do?",
-                ImageUrl = "forest-2.png",
+                ImageUrl = "level-1.jpg",
                 Actions = new List<GameAction>
                 {
                     new() { Label = "Check surroundings", Url = "check_surroundings" }
@@ -35,7 +37,7 @@ public static class DbSeeder
                 Chapter = 1,
                 Description = "You look around, and see a patch of mushrooms growing underneath a large tree. " +
                                             "You feel your stomach growl. The mushrooms look totally harmless.",
-                ImageUrl = "forest-3.png",
+                ImageUrl = "level-1.jpg",
                 Actions = new List<GameAction>
                 {
                     new() { Label = "Eat the mushrooms", Url = "eat_mushrooms" }
@@ -46,7 +48,7 @@ public static class DbSeeder
                 Url = "eat_mushrooms",
                 Chapter = 1,
                 Description = "You were wrong about the mushrooms. GAME OVER.",
-                ImageUrl = "death-mushroom.png",
+                ImageUrl = "level-1.jpg",
                 Actions = new List<GameAction>
                 {
                     new() { Label = "Restart", Url = "start" }
@@ -57,7 +59,7 @@ public static class DbSeeder
                 Url = "dont_eat_mushrooms",
                 Chapter = 1,
                 Description = "Taking your eyes away from the mushrooms, you see a clearing in the distance.",
-                ImageUrl = "forest-1.png",
+                ImageUrl = "level-1.jpg",
                 Actions = new List<GameAction>()
             }
         );
