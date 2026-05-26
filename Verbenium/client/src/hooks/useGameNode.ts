@@ -35,7 +35,7 @@ export function useGameNode(slug: string) {
         const data: GameNode = await response.json();
         if (cancelled) return;
 
-        const newImage = data.imageUrl ? `/level/${data.imageUrl}` : null;
+        const newImage = data.imageUrl ? `/backgrounds/${data.imageUrl}` : null;
 
         if (!imageState.current || !newImage) {
           setImageState((prev) => ({ ...prev, current: newImage }));
