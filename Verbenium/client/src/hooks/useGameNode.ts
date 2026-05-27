@@ -7,6 +7,7 @@ export function useGameNode(slug: string) {
     current: null,
     next: null,
     isFading: false,
+    usesSprite: false,
   });
   const [error, setError] = useState<FetchError | null>(null);
   const [retryCounter, setRetryCounter] = useState(0);
@@ -38,7 +39,11 @@ export function useGameNode(slug: string) {
         const newImage = data.imageUrl ? `/backgrounds/${data.imageUrl}` : null;
 
         if (!imageState.current || !newImage) {
-          setImageState((prev) => ({ ...prev, current: newImage }));
+          setImageState((prev) => ({
+            ...prev,
+            current: newImage,
+            usesSprite: data.usesSprite,
+          }));
           setGameNode(data);
           return;
         }
@@ -50,17 +55,27 @@ export function useGameNode(slug: string) {
             current: prev.current,
             next: newImage,
             isFading: true,
+            usesSprite: data.usesSprite,
           }));
           setTimeout(() => {
             if (cancelled) return;
-            setImageState({ current: newImage, next: null, isFading: false });
+            setImageState({
+              current: newImage,
+              next: null,
+              isFading: false,
+              usesSprite: data.usesSprite,
+            });
             setGameNode(data);
           }, 300);
         };
         img.onerror = () => {
           if (cancelled) return;
           console.error("Failed to load image:", newImage);
-          setImageState((prev) => ({ ...prev, current: null }));
+          setImageState((prev) => ({
+            ...prev,
+            current: null,
+            usesSprite: data.usesSprite,
+          }));
           setGameNode(data);
         };
         img.src = newImage;
