@@ -23,3 +23,7 @@ export interface FetchError {
   message: string;
   status?: number;
 }
+
+export type FetchResult =
+  | { data: GameNode; error?: never }
+  | { data?: never; error: FetchError };
