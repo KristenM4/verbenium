@@ -25,6 +25,7 @@ export function useGameNode(slug: string) {
       setError(null);
 
       const result = await fetchGameNode(fetchPath);
+      if (cancelled) return;
 
       if (result.error) {
         setError(result.error);
@@ -32,7 +33,6 @@ export function useGameNode(slug: string) {
       }
 
       const data: GameNode = result.data;
-      if (cancelled) return;
 
       const newImage = data.imageUrl ? `/backgrounds/${data.imageUrl}` : null;
 
@@ -46,15 +46,17 @@ export function useGameNode(slug: string) {
         return;
       }
 
-      const img = new Image();
-      img.onload = () => {
+      try {
+        await preloadImage(newImage);
         if (cancelled) return;
+
         setImageState((prev) => ({
           current: prev.current,
           next: newImage,
           isFading: true,
           usesSprite: data.usesSprite,
         }));
+
         setTimeout(() => {
           if (cancelled) return;
           setImageState({
@@ -65,8 +67,7 @@ export function useGameNode(slug: string) {
           });
           setGameNode(data);
         }, 300);
-      };
-      img.onerror = () => {
+      } catch {
         if (cancelled) return;
         console.error("Failed to load image:", newImage);
         setImageState((prev) => ({
@@ -75,8 +76,7 @@ export function useGameNode(slug: string) {
           usesSprite: data.usesSprite,
         }));
         setGameNode(data);
-      };
-      img.src = newImage;
+      }
     };
 
     load();
@@ -110,4 +110,13 @@ async function fetchGameNode(path: string): Promise<FetchResult> {
       error: { message: err instanceof Error ? err.message : "Network error" },
     };
   }
+}
+
+function preloadImage(src: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve();
+    img.onerror = () => reject(new Error(`Failed to load image: ${src}`));
+    img.src = src;
+  });
 }
