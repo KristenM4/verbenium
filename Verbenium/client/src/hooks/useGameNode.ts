@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+﻿import { useState, useEffect, useRef } from "react";
 import type {
   GameNode,
   ImageState,
@@ -16,6 +16,12 @@ export function useGameNode(slug: string) {
   const [usesSprite, setUsesSprite] = useState(false);
   const [error, setError] = useState<FetchError | null>(null);
   const [retryCounter, setRetryCounter] = useState(0);
+
+  const currentImage = imageState.current;
+  const currentImageRef = useRef<string | null>(null);
+  useEffect(() => {
+    currentImageRef.current = currentImage;
+  }, [currentImage]);
 
   useEffect(() => {
     let cancelled = false;
@@ -36,7 +42,7 @@ export function useGameNode(slug: string) {
 
       const newImage = data.imageUrl ? `/backgrounds/${data.imageUrl}` : null;
 
-      if (!imageState.current || !newImage) {
+      if (!currentImageRef.current || !newImage) {
         setImageState((prev) => ({
           ...prev,
           current: newImage,
