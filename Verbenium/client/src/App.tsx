@@ -16,7 +16,8 @@ function App() {
 function GameShell() {
   const { slug } = useParams();
   const currentSlug = slug ?? "/";
-  const { gameNode, imageState, error, retry } = useGameNode(currentSlug);
+  const { gameNode, imageState, usesSprite, error, retry } =
+    useGameNode(currentSlug);
 
   if (!gameNode) {
     if (error) return <ErrorBanner error={error} onRetry={retry} />;
@@ -29,9 +30,17 @@ function GameShell() {
     <div>
       <ErrorBanner error={error} onRetry={retry} />
       {gameNode.url === "/" ? (
-        <HomePage gameNode={gameNode} imageState={imageState} />
+        <HomePage
+          gameNode={gameNode}
+          imageState={imageState}
+          usesSprite={usesSprite}
+        />
       ) : (
-        <LevelPage gameNode={gameNode} imageState={imageState} />
+        <LevelPage
+          gameNode={gameNode}
+          imageState={imageState}
+          usesSprite={usesSprite}
+        />
       )}
     </div>
   );

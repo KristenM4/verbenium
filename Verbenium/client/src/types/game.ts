@@ -16,7 +16,6 @@ export interface ImageState {
   current: string | null;
   next: string | null;
   isFading: boolean;
-  usesSprite?: boolean;
 }
 
 export interface FetchError {

@@ -3,4 +3,5 @@
 export interface PageProps {
   gameNode: GameNode;
   imageState: ImageState;
+  usesSprite: boolean;
 }

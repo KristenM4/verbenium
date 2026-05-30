@@ -2,7 +2,7 @@
 import { ImageCrossfade } from "../components/ImageCrossfade";
 import { ActionList } from "../components/ActionList";
 
-export function HomePage({ gameNode, imageState }: PageProps) {
+export function HomePage({ gameNode, imageState, usesSprite }: PageProps) {
   return (
     <div className="container">
       <img
@@ -14,7 +14,7 @@ export function HomePage({ gameNode, imageState }: PageProps) {
         <p>{gameNode.description}</p>
         <ActionList actions={gameNode.actions ?? []} />
       </div>
-      <ImageCrossfade {...imageState} />
+      <ImageCrossfade {...imageState} usesSprite={usesSprite} />
     </div>
   );
 }
