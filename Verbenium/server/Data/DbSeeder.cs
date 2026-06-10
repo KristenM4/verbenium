@@ -6,9 +6,28 @@ public static class DbSeeder
 {
     public static void SeedGameNodes(this AppDbContext db)
     {
+        db.GameObjectPlacements.RemoveRange(db.GameObjectPlacements);
         db.GameActions.RemoveRange(db.GameActions);
         db.GameNodes.RemoveRange(db.GameNodes);
+        db.GameObjects.RemoveRange(db.GameObjects);
         db.SaveChanges();
+
+        var player = new GameObject
+        {
+            Name = "Player",
+            ImageUrl = "player-sprite/sprite-basic.png",
+            Type = ObjectType.Player,
+            DefaultHeight = 16.67,
+        };
+
+        var mushroom = new GameObject
+        {
+            Name = "Mushroom",
+            ImageUrl = "objects/mushrooms.png",
+            Type = ObjectType.Item,
+        };
+
+        db.GameObjects.AddRange(player, mushroom);
 
         db.GameNodes.AddRange(
             new GameNode
@@ -30,6 +49,10 @@ public static class DbSeeder
                 Actions = new List<GameAction>
                 {
                     new() { Label = "Check surroundings", Url = "check_surroundings" }
+                },
+                Placements = new List<GameObjectPlacement>
+                {
+                    new() { Object = player, PosX = 41.67, PosY = 41.67 }
                 }
             },
             new GameNode
@@ -43,6 +66,11 @@ public static class DbSeeder
                 Actions = new List<GameAction>
                 {
                     new() { Label = "Eat the mushrooms", Url = "eat_mushrooms" }
+                },
+                Placements = new List<GameObjectPlacement>
+                {
+                    new() { Object = player, PosX = 41.67, PosY = 41.67 },
+                    new() { Object = mushroom, PosX = 45, PosY = 72, Height = 14 }
                 }
             },
             new GameNode
@@ -64,7 +92,11 @@ public static class DbSeeder
                 Description = "Taking your eyes away from the mushrooms, you see a clearing in the distance.",
                 ImageUrl = "level-1.jpg",
                 UsesSprite = true,
-                Actions = new List<GameAction>()
+                Actions = new List<GameAction>(),
+                Placements = new List<GameObjectPlacement>
+                {
+                    new() { Object = player, PosX = 41.67, PosY = 41.67 }
+                }
             }
         );
 
