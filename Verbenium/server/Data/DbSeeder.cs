@@ -6,12 +6,22 @@ public static class DbSeeder
 {
     public static void SeedGameNodes(this AppDbContext db)
     {
+        ClearData(db);
+        (GameObject player, GameObject mushroom) = AddGameObjects(db);
+        AddGameNodesAndPlacements(db, player, mushroom);
+    }
+
+    private static void ClearData(AppDbContext db)
+    {
         db.GameObjectPlacements.RemoveRange(db.GameObjectPlacements);
         db.GameActions.RemoveRange(db.GameActions);
         db.GameNodes.RemoveRange(db.GameNodes);
         db.GameObjects.RemoveRange(db.GameObjects);
         db.SaveChanges();
+    }
 
+    private static (GameObject Player, GameObject Mushroom) AddGameObjects(AppDbContext db)
+    {
         var player = new GameObject
         {
             Name = "Player",
@@ -19,7 +29,6 @@ public static class DbSeeder
             Type = ObjectType.Player,
             DefaultHeight = 16.67,
         };
-
         var mushroom = new GameObject
         {
             Name = "Mushroom",
@@ -28,7 +37,11 @@ public static class DbSeeder
         };
 
         db.GameObjects.AddRange(player, mushroom);
+        return (player, mushroom);
+    }
 
+    private static void AddGameNodesAndPlacements(AppDbContext db, GameObject player, GameObject mushroom)
+    {
         db.GameNodes.AddRange(
             new GameNode
             {
