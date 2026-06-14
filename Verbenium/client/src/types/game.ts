@@ -8,7 +8,6 @@ export interface GameNode {
   chapter?: number;
   description: string;
   imageUrl?: string;
-  usesSprite?: boolean;
   actions: GameAction[];
   placements: GameObjectPlacement[];
 }

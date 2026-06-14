@@ -7,7 +7,6 @@ public class GameNode
     public int? Chapter { get; set; }
     public string Description { get; set; } = "";
     public string? ImageUrl { get; set; }
-    public bool? UsesSprite { get; set; }
     public List<GameAction> Actions { get; set; } = [];
     public List<GameObjectPlacement> Placements { get; set; } = [];
 }

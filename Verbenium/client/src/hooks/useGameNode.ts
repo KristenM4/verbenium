@@ -13,7 +13,6 @@ export function useGameNode(slug: string) {
     next: null,
     isFading: false,
   });
-  const [usesSprite, setUsesSprite] = useState(false);
   const [error, setError] = useState<FetchError | null>(null);
   const [retryCounter, setRetryCounter] = useState(0);
 
@@ -47,7 +46,6 @@ export function useGameNode(slug: string) {
           ...prev,
           current: newImage,
         }));
-        setUsesSprite(data.usesSprite ?? false);
         setGameNode(data);
         return;
       }
@@ -61,7 +59,6 @@ export function useGameNode(slug: string) {
           next: newImage,
           isFading: true,
         }));
-        setUsesSprite(data.usesSprite ?? false);
 
         setTimeout(() => {
           if (cancelled) return;
@@ -79,7 +76,6 @@ export function useGameNode(slug: string) {
           ...prev,
           current: null,
         }));
-        setUsesSprite(data.usesSprite ?? false);
         setGameNode(data);
       }
     };
@@ -90,9 +86,11 @@ export function useGameNode(slug: string) {
     };
   }, [slug, retryCounter]);
 
+  console.log(gameNode);
+
   const retry = () => setRetryCounter((c) => c + 1);
 
-  return { gameNode, imageState, usesSprite, error, retry };
+  return { gameNode, imageState, error, retry };
 }
 
 async function fetchGameNode(path: string): Promise<FetchResult> {
