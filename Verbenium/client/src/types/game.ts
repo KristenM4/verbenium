@@ -10,6 +10,25 @@ export interface GameNode {
   imageUrl?: string;
   usesSprite?: boolean;
   actions: GameAction[];
+  placements: GameObjectPlacement[];
+}
+
+export interface GameObject {
+  name: string;
+  imageUrl: string;
+  defaultHeight?: number;
+  defaultWidth?: number;
+  type: string;
+}
+
+export interface GameObjectPlacement {
+  gameNodeId: number;
+  gameObjectId: number;
+  object: GameObject;
+  posX: number;
+  posY: number;
+  height?: number;
+  width?: number;
 }
 
 export interface ImageState {

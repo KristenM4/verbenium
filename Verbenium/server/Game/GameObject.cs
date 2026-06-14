@@ -1,5 +1,7 @@
 namespace Verbenium.server.Game;
 
+using System.Text.Json.Serialization;
+
 public enum ObjectType
 {
     Player,
@@ -15,5 +17,6 @@ public class GameObject
     public double? DefaultWidth { get; set; }
     public ObjectType Type { get; set; }
 
+    [JsonIgnore]
     public List<GameObjectPlacement> Placements { get; set; } = [];
 }

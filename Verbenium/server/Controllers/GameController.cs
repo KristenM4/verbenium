@@ -25,6 +25,8 @@ public class GameController : ControllerBase
     {
         var node = await _db.GameNodes
             .Include(n => n.Actions)
+            .Include(n => n.Placements)
+            .ThenInclude(p => p.Object)
             .FirstOrDefaultAsync(n => n.Url == slug);
 
         return node is null ? NotFound() : Ok(node);
