@@ -1,10 +1,13 @@
-﻿interface Props {
+﻿import type { ReactNode } from "react";
+
+interface Props {
   current: string | null;
   next: string | null;
   isFading: boolean;
+  children?: ReactNode;
 }
 
-export function ImageCrossfade({ current, next, isFading }: Props) {
+export function ImageCrossfade({ current, next, isFading, children }: Props) {
   if (!current && !next) return null;
   return (
     <div className="relative mx-auto w-full flex-shrink-0">
@@ -23,6 +26,7 @@ export function ImageCrossfade({ current, next, isFading }: Props) {
           />
         </div>
       )}
+      {children}
     </div>
   );
 }
