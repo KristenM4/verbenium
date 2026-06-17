@@ -25,9 +25,9 @@ public static class DbSeeder
         var player = new GameObject
         {
             Name = "Player",
-            ImageUrl = "player-sprite/sprite-basic.png",
+            ImageUrl = "player-sprite/sprite-v2.png",
             Type = ObjectType.Player,
-            DefaultHeight = 16.67,
+            DefaultHeight = 17,
         };
         var mushroom = new GameObject
         {
@@ -57,13 +57,14 @@ public static class DbSeeder
                 Url = "start",
                 Chapter = 1,
                 Description = "Okay, let's start: You wake up in a dark forest. What do you do?",
-                ImageUrl = "level-1.jpg",
+                ImageUrl = "level-1-v2.jpg",
                 Actions = new List<GameAction>
                 {
                     new() { Label = "Check surroundings", Url = "check_surroundings" }
                 },
                 Placements = new List<GameObjectPlacement>
                 {
+                    new() { Object = mushroom, PosX = 45, PosY = 15, Height = 8 },
                     new() { Object = player, PosX = 41.67, PosY = 41.67 }
                 }
             },
@@ -73,15 +74,15 @@ public static class DbSeeder
                 Chapter = 1,
                 Description = "You look around, and see a patch of mushrooms growing underneath a large tree. " +
                                             "You feel your stomach growl. The mushrooms look totally harmless.",
-                ImageUrl = "level-1.jpg",
+                ImageUrl = "level-1-v2.jpg",
                 Actions = new List<GameAction>
                 {
                     new() { Label = "Eat the mushrooms", Url = "eat_mushrooms" }
                 },
                 Placements = new List<GameObjectPlacement>
                 {
-                    new() { Object = player, PosX = 41.67, PosY = 41.67 },
-                    new() { Object = mushroom, PosX = 45, PosY = 72, Height = 14 }
+                    new() { Object = mushroom, PosX = 45, PosY = 15, Height = 8 },
+                    new() { Object = player, PosX = 45, PosY = 24 }
                 }
             },
             new GameNode
@@ -100,7 +101,7 @@ public static class DbSeeder
                 Url = "dont_eat_mushrooms",
                 Chapter = 1,
                 Description = "Taking your eyes away from the mushrooms, you see a clearing in the distance.",
-                ImageUrl = "level-1.jpg",
+                ImageUrl = "level-1-v2.jpg",
                 Actions = new List<GameAction>(),
                 Placements = new List<GameObjectPlacement>
                 {
