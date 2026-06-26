@@ -12,6 +12,8 @@ export function useGameNode(slug: string) {
     current: null,
     next: null,
     isFading: false,
+    currentPlacements: [],
+    nextPlacements: [],
   });
   const [error, setError] = useState<FetchError | null>(null);
   const [retryCounter, setRetryCounter] = useState(0);
@@ -42,10 +44,13 @@ export function useGameNode(slug: string) {
       const newImage = data.imageUrl ? `/backgrounds/${data.imageUrl}` : null;
 
       if (!currentImageRef.current || !newImage) {
-        setImageState((prev) => ({
-          ...prev,
+        setImageState({
           current: newImage,
-        }));
+          next: null,
+          isFading: false,
+          currentPlacements: data.placements ?? [],
+          nextPlacements: [],
+        });
         setGameNode(data);
         return;
       }
@@ -58,6 +63,8 @@ export function useGameNode(slug: string) {
           current: prev.current,
           next: newImage,
           isFading: true,
+          currentPlacements: prev.currentPlacements,
+          nextPlacements: data.placements ?? [],
         }));
 
         setTimeout(() => {
@@ -66,6 +73,8 @@ export function useGameNode(slug: string) {
             current: newImage,
             next: null,
             isFading: false,
+            currentPlacements: data.placements ?? [],
+            nextPlacements: [],
           });
           setGameNode(data);
         }, 300);
@@ -75,6 +84,7 @@ export function useGameNode(slug: string) {
         setImageState((prev) => ({
           ...prev,
           current: null,
+          currentPlacements: [],
         }));
         setGameNode(data);
       }

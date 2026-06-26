@@ -1,6 +1,5 @@
 ﻿import type { PageProps } from "../types/pageProps";
 import { ImageCrossfade } from "../components/ImageCrossfade";
-import { ObjectLayer } from "../components/ObjectLayer";
 import { ActionList } from "../components/ActionList";
 
 export function LevelPage({ gameNode, imageState }: PageProps) {
@@ -20,9 +19,7 @@ export function LevelPage({ gameNode, imageState }: PageProps) {
           <ActionList actions={gameNode.actions ?? []} />
         </div>
         <div className="xl:col-span-4">
-          <ImageCrossfade {...imageState}>
-            <ObjectLayer placements={gameNode.placements ?? []} />
-          </ImageCrossfade>
+          <ImageCrossfade {...imageState} />
         </div>
       </div>
     </div>

@@ -34,6 +34,8 @@ export interface ImageState {
   current: string | null;
   next: string | null;
   isFading: boolean;
+  currentPlacements: GameObjectPlacement[];
+  nextPlacements: GameObjectPlacement[];
 }
 
 export interface FetchError {
