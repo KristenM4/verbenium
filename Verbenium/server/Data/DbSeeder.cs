@@ -64,7 +64,7 @@ public static class DbSeeder
                 },
                 Placements = new List<GameObjectPlacement>
                 {
-                    new() { Object = mushroom, PosX = 45, PosY = 15, Height = 8 },
+                    new() { Object = mushroom, PosX = 45, PosY = 9, Height = 8 },
                     new() { Object = player, PosX = 41.67, PosY = 41.67 }
                 }
             },
@@ -81,7 +81,7 @@ public static class DbSeeder
                 },
                 Placements = new List<GameObjectPlacement>
                 {
-                    new() { Object = mushroom, PosX = 45, PosY = 15, Height = 8 },
+                    new() { Object = mushroom, PosX = 45, PosY = 9, Height = 8 },
                     new() { Object = player, PosX = 45, PosY = 24 }
                 }
             },
@@ -90,7 +90,7 @@ public static class DbSeeder
                 Url = "eat_mushrooms",
                 Chapter = 1,
                 Description = "You were wrong about the mushrooms. GAME OVER.",
-                ImageUrl = "death-mushroom.png",
+                ImageUrl = "death-mushroom-v2.jpg",
                 Actions = new List<GameAction>
                 {
                     new() { Label = "Restart", Url = "start" }
